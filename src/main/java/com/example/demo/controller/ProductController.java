@@ -4,6 +4,8 @@ import com.example.demo.model.Product;
 import com.example.demo.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -32,7 +34,7 @@ public class ProductController {
     }
 
     @PostMapping(value = "/find/{name}")
-    public Product findProduct(@PathVariable(name = "name") String name) {
+    public List<Product> findProduct(@PathVariable(name = "name") String name) {
         return productService.findProduct(name);
     }
 }

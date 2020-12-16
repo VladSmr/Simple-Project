@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import java.util.List;
 
 @Repository
 public class ProductDaoImpl implements ProductDao {
@@ -46,11 +47,11 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Product findProduct(String name) {
+    public List<Product> findProduct(String name) {
         Query query = em.createNativeQuery("select * from Product where name = ?");
         query.setParameter(1, name);
-        Product product = (Product) query.getSingleResult();
-        if (product == null) {
+        List<Product> product = (List<Product>) query.getResultList();
+        if (product.isEmpty()) {
             throw new RuntimeException("Product with provided name not found. Try again");
         } else {
             return product;

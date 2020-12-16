@@ -2,6 +2,8 @@ package com.example.demo.dao;
 
 import com.example.demo.model.Product;
 
+import java.util.List;
+
 public interface ProductDao {
 
     void addProduct(Product prod);
@@ -10,5 +12,5 @@ public interface ProductDao {
 
     void updateProduct(Product prod);
 
-    Product findProduct(String name);
+    List<Product> findProduct(String name);
 }
